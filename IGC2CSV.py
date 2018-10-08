@@ -220,6 +220,7 @@ if __name__ == "__main__":
     ('Latitude (Degrees)', 'record', 'latdegrees'),
     ('Longitude (Degrees)', 'record', 'londegrees'),
     ('Altitude GPS', 'record', 'alt-GPS'),
+    ('Altitude pressure', 'record', 'pressure'),
     ('Distance Delta', 'record', 'distance_delta'),
     ('Distance Total', 'record', 'distance_total'),
     ('Groundspeed', 'record', 'groundspeed'),
