@@ -47,12 +47,18 @@ def crunch_flight(flight):
       flight['distance_total'] += record['distance_delta']
       record['distance_total'] = flight['distance_total']
       record['distance_from_start'] = straight_line_distance(record['londegrees'], record['latdegrees'], record['alt-GPS'], flight['fixrecords'][0]['londegrees'], flight['fixrecords'][0]['latdegrees'], flight['fixrecords'][0]['alt-GPS'])
-      record['groundspeed'] = record['distance_delta'] / record['time_delta'] * 3600
+      if ( record['time_delta']  == 0 ):
+          record['groundspeed'] = 0
+      else:
+          record['groundspeed'] = record['distance_delta'] / record['time_delta'] * 3600
       flight['groundspeed_peak'] = max(record['groundspeed'], flight['groundspeed_peak'])
       record['groundspeed_peak'] = flight['groundspeed_peak']
       record['alt_gps_delta'] = record['alt-GPS'] - prevrecord['alt-GPS']
       record['alt_pressure_delta'] = record['pressure'] - prevrecord['pressure']
-      record['climb_speed'] = record['alt_gps_delta'] / record['time_delta']
+      if ( record['time_delta']  == 0 ):
+          record['climb_speed'] = 0
+      else:
+          record['climb_speed'] = record['alt_gps_delta'] / record['time_delta']
       flight['climb_total'] += max(0, record['alt_gps_delta'])
       record['climb_total'] = flight['climb_total']
       flight['alt_peak'] = max(record['alt-GPS'], flight['alt_peak'])
